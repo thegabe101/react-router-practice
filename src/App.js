@@ -6,30 +6,31 @@ import { Error } from './pages/Error';
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 import { Navbar } from './pages/Navbar';
 import { useState, createContext } from 'react';
-
-
-
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 export const AppContext = createContext();
 
 
-
 function App() {
+  const client = new QueryClient({});
+
   const [userName, setUserName] = useState('Gabe');
   const [getUsername, setGetUsername] = useState(localStorage.getItem('username'));
 
   return (
     <div className="App">
-      <AppContext.Provider value={{ userName, getUsername, setUserName, setGetUsername }}>
-        <Router>
-          <Navbar />
-          <Routes>
-            <Route path='/' element={<Home />} />
-            <Route path='/profile' element={<Profile />} />
-            <Route path='/contact' element={<Contact />} />
-            <Route path='*' element={<Error />} />
-          </Routes>
-        </Router >
-      </AppContext.Provider>
+      <QueryClientProvider client={client}>
+        <AppContext.Provider value={{ userName, getUsername, setUserName, setGetUsername }}>
+          <Router>
+            <Navbar />
+            <Routes>
+              <Route path='/' element={<Home />} />
+              <Route path='/profile' element={<Profile />} />
+              <Route path='/contact' element={<Contact />} />
+              <Route path='*' element={<Error />} />
+            </Routes>
+          </Router >
+        </AppContext.Provider>
+      </QueryClientProvider>
     </div>
   );
 }
