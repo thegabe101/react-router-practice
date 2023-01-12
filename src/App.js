@@ -15,11 +15,11 @@ export const AppContext = createContext();
 
 function App() {
   const [userName, setUserName] = useState('Gabe');
-
+  const [getUsername, setGetUsername] = useState(localStorage.getItem('username'));
 
   return (
     <div className="App">
-      <AppContext.Provider value={{ userName, setUserName }}>
+      <AppContext.Provider value={{ userName, getUsername, setUserName, setGetUsername }}>
         <Router>
           <Navbar />
           <Routes>

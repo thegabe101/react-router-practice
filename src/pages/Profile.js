@@ -5,10 +5,11 @@ import { AppContext } from '../App';
 
 
 export const Profile = () => {
-    const { setUserName, userName } = useContext(AppContext);
+    const { userName, getUsername } = useContext(AppContext);
+
 
     return (
-        <div><h1>{userName}'s Profile</h1>
-            <ChangeProfile setUserName={setUserName} /></div>
+        <div><h1>{getUsername}'s Profile</h1>
+            <ChangeProfile /></div>
     )
 }
