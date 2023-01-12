@@ -16,6 +16,8 @@ function App() {
   const [userName, setUserName] = useState('Gabe');
   const [getUsername, setGetUsername] = useState(localStorage.getItem('username'));
 
+  //access to query object in const above; can use things like don't refresh on window change, etc- could be useful in the future 
+
   return (
     <div className="App">
       <QueryClientProvider client={client}>
